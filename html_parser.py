@@ -7,8 +7,8 @@ class HtmlParser:
         Converted Markup.
 
     Example:
-        parser = HtmlParser("<h1> Hello world ");
-        parser.htmltoht()
+        converted = HtmlParser("<h1> Hello world </h1>");
+        converted.htmltoht()
     """
     def __init__(self, ht:str) -> None:
         self.ht = ht.strip()
@@ -21,8 +21,8 @@ class HtmlParser:
             Returns Markdown for heads from h1 to h6
 
         Example:
-            parser = HTMLPaser("<h2> Heading 2 </h2>");\n
-            parser.htmltoht()
+            converted = HTMLPaser("<h2> Heading 2 </h2>");\n
+            converted.htmltoht()
         """
         for i in range(6, 0, -1):
             ht = ht.replace(f"<h{i}>", f"{'#' * i} ").replace(f"</h{i}>", "")
@@ -36,8 +36,8 @@ class HtmlParser:
             Returns Markdown for bold and italic.
 
         Example:
-            parser = HTMLParser("<strong> Bold text </strong>");\n
-            parser.htmltoht()
+            converted = HTMLParser("<strong> Bold text </strong>");\n
+            converted.htmltoht()
         """
         ht = ht.replace("<strong>", "**").replace("</strong>", "**").replace("<em>", "*").replace("</em>", "*")
         return ht
@@ -50,8 +50,8 @@ class HtmlParser:
             Returns Markdown for unordered list
 
         Example:
-            parser = HTMLParser("<ul> <li> item1 </li> </ul>");\n
-            parser.htmlltoht()
+            converted = HTMLParser("<ul> <li> item1 </li> </ul>");\n
+            converted.htmlltoht()
         """
         ht = ht.replace("<ul>", "").replace("</ul>", "")
         ht = ht.replace("<li>", "- ").replace("</li>", "\n")
@@ -65,8 +65,8 @@ class HtmlParser:
             Returns Markdown for comment
 
         Example:
-            parser = HTMLParser("<comment> Comment Text </comment>");\n
-            parser.htmltoht()
+            converted = HTMLParser("<comment> Comment Text </comment>");\n
+            converted.htmltoht()
         """
         ht = ht.replace("<comment>", "<!-- ").replace("</comment>", " -->")
         return ht
@@ -79,8 +79,8 @@ class HtmlParser:
             Returns Markdown for paragraph
 
         Example:
-            parser = HTMLParser("<p> This is paragraph </p>");\n
-            parser.htmltoht()
+            converted = HTMLParser("<p> This is paragraph </p>");\n
+            converted.htmltoht()
         """
         ht =ht.replace("<p>", "").replace("</p>", "")
         return ht
@@ -93,8 +93,8 @@ class HtmlParser:
             Returns Markdown for image
 
         Example:
-            parser = HTMLParser("<img src = "static/image/example.jpg">Example</img>");\n
-            parser.htmltoht()
+            converted = HTMLParser("<img src = "static/image/example.jpg">Example</img>");\n
+            converted.htmltoht()
         """
         ht = ht.replace("<img src = \"", "![hover_text](").replace("\"></img>", ")")
         return ht
@@ -107,8 +107,8 @@ class HtmlParser:
             Returns Markdown for links
 
         Example:
-            parser = HMTLParser("<a href = "https://www.example.com">Links<a>");\n
-            parser.htmltoht()
+            converted = HMTLParser("<a href = "https://www.example.com">Links<a>");\n
+            converted.htmltoht()
         """
         ht = ht.replace('<a href = "', "[").replace('">', "]").replace("</a>", "")
         return ht
@@ -121,8 +121,8 @@ class HtmlParser:
             Return Markdown image with links
 
         Example:
-            parser = HTMLParser("<img src = ""><a href= "https://www.example.com">Image with links</a></img>");
-            parser.htmltoht()
+            converted = HTMLParser("<img src = ""><a href= "https://www.example.com">Image with links</a></img>");
+            converted.htmltoht()
         """
         ht = ht.replace('<img src = "', "![hover_text](").replace('"><a href = "', ")(").replace('"></a></img>', ")")
         return ht
@@ -135,8 +135,8 @@ class HtmlParser:
             Returns Markdown video
 
         Example:
-            parser = HTMLParser("<video src = "static/videos/example.mp4">Example video</video>");
-            parser.htmltoht()
+            converted = HTMLParser("<video src = "static/videos/example.mp4">Example video</video>");
+            converted.htmltoht()
         """
         ht = ht.replace("<video src = \"", "[![Alt text](").replace("\"></video>", "")
         return ht
@@ -149,9 +149,9 @@ class HtmlParser:
             Returns Markdown video with links
 
         Example:
-            parser = HTMLParser("<video src = "static/videos/example.mp4"><a href = "https://www.example.com">Example
+            converted = HTMLParser("<video src = "static/videos/example.mp4"><a href = "https://www.example.com">Example
             video</a></video>");\n
-            parser.htmltoht()
+            converted.htmltoht()
         """
         ht = ht.replace('<video src= "', "[![Alt text](").replace('"><a href = "', "(").replace('"></a>', ")")
         return ht
@@ -163,8 +163,8 @@ class HtmlParser:
         :return:
             Returns Markdown backticks
         Example:
-            parser = HTMLParser("<code> Example </code>");
-            parser.htmltoht()
+            converted = HTMLParser("<code> Example </code>");
+            converted.htmltoht()
         """
         ht = ht.replace("<code>", "`").replace("</code>", "`")
         return ht
@@ -177,8 +177,8 @@ class HtmlParser:
             Returns Converted Markdown text.
 
         Example:
-            parser = HtmlParser("<h2>Heading 2</h2> <p>This is a paragraph</p>")
-            parser.htmltoht()
+            converted = HtmlParser("<h2>Heading 2</h2> <p>This is a paragraph</p>")
+            converted.htmltoht()
         """
         self.ht = self.replace_head(self.ht)
         self.ht = self.replace_bold_italic(self.ht)
