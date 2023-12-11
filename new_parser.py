@@ -17,9 +17,7 @@ class MarkdownParser:
         lines = md.split('\n')
         for i in range(len(lines)):
             if lines[i].startswith("- "):
-                lines[i] = lines[i].replace("- ", "<li>") + "</li>"
-            else:
-                lines[i] = lines[i]
+                lines[i] = f"<li>{lines[i][2:]}</li>"
         result = "<ul>\n" + "\n".join(lines) + "\n</ul>"
         return result
 
@@ -39,7 +37,7 @@ class MarkdownParser:
         return md
 
     def replace_video(self, md):
-        md = md.replace("[![Alt text](", "<video src=\"").replace(")", "\"></video>")
+        md = md.replace("[![Alt text](", "<video src=\"").replace(")]", "\"></video>")
         return md
 
     def replace_backticks(self, md):
@@ -48,9 +46,9 @@ class MarkdownParser:
 
     def markdown_to_html(self):
         md = self.replace_head(self.md)
+        md = self.replace_comment(md)
         md = self.replace_bold_italic(md)
         md = self.replace_unordered_list(md)
-        md = self.replace_comment(md)
         md = self.replace_paragraph(md)
         md = self.replace_links(md)
         md = self.replace_image(md)
