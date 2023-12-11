@@ -196,10 +196,6 @@ class HtmlParser:
 
 
 def main():
-    """
-    user input for converting HTML snippets to Markdown
-    :return:
-    """
     inputs = []
     print("Enter HTML snippets (type 'done' on a new line to finish):")
     while True:
