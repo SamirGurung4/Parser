@@ -35,10 +35,10 @@ class MarkdownParser:
         :param md:
             HTML text to replace Markdown bold and italic
         :return:
-            Returns HTMl tag for bold and italic
+            Returns HTML tag for bold and italic
 
         Example:
-            converted = MarkdownParser("** example **");\n
+            converted = MarkdownParser("**example**")
             converted.markdown_to_html()
         """
         md = md.replace("**", "<strong>").replace("</strong>", "</strong>").replace("*", "<em>").replace("</em>", "</em>")
@@ -141,7 +141,7 @@ class MarkdownParser:
             Returns HTML tag for backticks
 
         Example:
-            converted = MarkdownParser("`backticks`");
+            converted = MarkdownParser("`backticks`")
             converted.markdown_to_html()
         """
         md = md.replace("`", "<code>").replace("`", "</code>")
